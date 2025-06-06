@@ -1,0 +1,10 @@
+token=$(yq -r '.token' ~/.humctl)
+export HUMANITEC_TOKEN=$token
+export HUMANITEC_APP=pgcompanion-example
+export HUMANITEC_ORG=FIXME
+export HUMANITEC_ENV=development
+
+export TF_VAR_ht_token=$token
+export TF_VAR_app_name=$HUMANITEC_APP
+export TF_VAR_org_id=$HUMANITEC_ORG
+export TF_VAR_env_id=$HUMANITEC_ENV

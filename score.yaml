@@ -1,0 +1,30 @@
+apiVersion: score.dev/v1b1
+
+metadata:
+  name: pg-with-companion
+
+service:
+  ports:
+    www:
+      port: 8080
+      targetPort: 8080
+
+containers:
+  hello-world:
+    image: ghcr.io/astromechza/demo-app:latest
+    variables:
+      OVERRIDE_COLOR: "#ababab"
+      OVERRIDE_POSTGRES: "postgres://${resources.db.username}:${resources.db.password}@${resources.db.host}:${resources.db.port}/${resources.db.name}"
+
+resources:
+  route:
+    type: route
+    params:
+      host: ${resources.dns.host}
+      path: /
+      port: 8080
+  dns:
+    type: dns
+    id: dns
+  db:
+    type: postgres
