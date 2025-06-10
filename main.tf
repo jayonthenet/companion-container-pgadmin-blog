@@ -22,6 +22,7 @@ variable "org_id" {
 variable "env_id" {
   description = "Humanitec environment ID"
   type        = string
+  default     = "development"
 }
 
 resource "humanitec_application" "app" {
@@ -410,6 +411,7 @@ EOT
 resource "humanitec_resource_definition_criteria" "pg_with_attached_admin" {
   resource_definition_id = resource.humanitec_resource_definition.pg_with_attached_admin.id
   app_id                 = var.app_name
+  env_type               = var.env_id
 
   force_delete = true
 }
